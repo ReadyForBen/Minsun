@@ -1,5 +1,6 @@
 <!-- 🪷 This project was developed by Ben (@InactiveBen) on Twitter and Discord. -->
 <!-- It is open-source on GitHub, and you're welcome to explore, use, or contribute to it: https://github.com/ReadyForBen/Minsun/tree/main -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,27 +107,38 @@
             font-weight: 600;
             position: relative;
             overflow: hidden;
-            transition: color 0.4s;
+            transition: color 0.4s, background-color 0.4s;
         }
         .button::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 300%;
+            width: 0;
             height: 300%;
             background: rgba(255, 255, 255, 0.5);
-            transition: all 0.75s ease;
+            transition: all 0.5s ease;
             transform: translate(-50%, -50%) rotate(45deg);
             opacity: 0;
         }
         .button:hover::before {
+            width: 300%;
             opacity: 1;
-            width: 150%;
-            height: 150%;
         }
         .button:hover {
-            color: #fff;
+            background-color: #e03b57;
+        }
+        .button:active {
+            transform: scale(0.95);
+        }
+        .fade-out {
+            animation: fadeOut 0.5s forwards;
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(1.1);
+            }
         }
     </style>
 </head>
@@ -141,8 +153,8 @@
         <p>Thank you for visiting <span class="highlight">Minsun</span>! We're working hard on something amazing. Our server is getting a major upgrade, and we can't wait to show you what's next.</p>
         <p>Stay tuned for updates—you're going to love what's coming next!</p>
         <div class="buttons">
-            <a href="https://www.roblox.com/groups/34590522/Minsun#!/about" class="button" target="_blank">Join us on Roblox</a>
-            <a href="https://discord.gg/vS5B5hpc97" class="button" target="_blank">Join our Discord</a>
+            <a href="https://www.roblox.com/groups/34590522/Minsun#!/about" class="button" target="_blank" onclick="handleButtonClick(event)">Join us on Roblox</a>
+            <a href="https://discord.gg/vS5B5hpc97" class="button" target="_blank" onclick="handleButtonClick(event)">Join our Discord</a>
         </div>
     </div>
 
@@ -164,7 +176,15 @@
                 document.querySelector('.content').style.display = 'block';
             }, 1500);
         }, 4500);
+
+        function handleButtonClick(event) {
+            event.preventDefault();
+            const button = event.currentTarget;
+            button.classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = button.href;
+            }, 500);
+        }
     </script>
 </body>
 </html>
-
