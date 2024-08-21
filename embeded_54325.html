@@ -1,6 +1,5 @@
 <!-- 🪷 This project was developed by Ben (@InactiveBen) on Twitter and Discord. -->
 <!-- It is open-source on GitHub, and you're welcome to explore, use, or contribute to it: https://github.com/ReadyForBen/Minsun/tree/main -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,19 +104,19 @@
             font-weight: 600;
             position: relative;
             overflow: hidden;
-            transition: background-color 0.4s;
             cursor: pointer;
+            transition: background-color 0.4s ease-in-out;
         }
         .button::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
+            left: -150%;
+            width: 150%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             transform: skewX(-20deg);
-            transition: left 0.5s ease;
+            transition: left 0.5s ease-in-out;
         }
         .button:hover::before {
             left: 100%;
@@ -174,3 +173,4 @@
     </script>
 </body>
 </html>
+
