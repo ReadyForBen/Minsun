@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minsun - Coming Soon</title>
-    
+    <title>Minsun - Loading</title>
+
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Minsun - Coming Soon">
     <meta property="og:description" content="Minsun is an authentic Korean-style teahouse, offering a serene escape in the heart of Seoul.">
@@ -26,7 +26,7 @@
     <link rel="icon" type="image/png" href="https://i.imgur.com/IZeOnsW.png">
 
     <!-- Font and Styles -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -39,7 +39,29 @@
             font-family: 'Poppins', Arial, sans-serif;
             color: white;
         }
-        .container {
+        .loading {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2E3238;
+            text-align: center;
+        }
+        .loading-circle {
+            border: 8px solid #3A3F47;
+            border-top: 8px solid #fa4463;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .content {
+            display: none;
             text-align: center;
             max-width: 600px;
             padding: 20px;
@@ -47,7 +69,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             border-radius: 8px;
         }
-        .container img {
+        .content img {
             width: 200px;
             height: auto;
             margin-bottom: -32px;
@@ -78,23 +100,79 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s, background-color 0.4s;
+        }
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%) rotate(45deg);
+            opacity: 0;
+        }
+        .button:hover::before {
+            width: 300%;
+            opacity: 1;
         }
         .button:hover {
             background-color: #e03b57;
         }
+        .button:active {
+            transform: scale(0.95);
+        }
+        .fade-out {
+            animation: fadeOut 0.5s forwards;
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="loading">
+        <div class="loading-circle"></div>
+    </div>
+    
+    <div class="content">
         <img src="https://i.imgur.com/BptG9Km.png" alt="Thumbnail Image">
-        
         <p>Thank you for visiting <span class="highlight">Minsun</span>! We're working hard on something amazing. Our server is getting a major upgrade, and we can't wait to show you what's next.</p>
-        
         <p>Stay tuned for updates—you're going to love what's coming next!</p>
         <div class="buttons">
-            <a href="https://www.roblox.com/groups/34590522/Minsun#!/about" class="button" target="_blank">Join us on Roblox</a>
-            <a href="https://discord.gg/vS5B5hpc97" class="button" target="_blank">Join our Discord</a>
+            <a href="https://www.roblox.com/groups/34590522/Minsun#!/about" class="button" target="_blank" onclick="handleButtonClick(event)">Join us on Roblox</a>
+            <a href="https://discord.gg/vS5B5hpc97" class="button" target="_blank" onclick="handleButtonClick(event)">Join our Discord</a>
         </div>
     </div>
+
+    <script>
+        const loadingCircle = document.querySelector('.loading-circle');
+
+        setTimeout(function() {
+            loadingCircle.textContent = '';
+            setTimeout(function() {
+                document.querySelector('.loading').style.display = 'none';
+                document.querySelector('.content').style.display = 'block';
+                document.title = 'Minsun';
+            }, 1500);
+        }, 900);
+
+        function handleButtonClick(event) {
+            event.preventDefault();
+            const button = event.currentTarget;
+            button.classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = button.href;
+            }, 500);
+        }
+    </script>
 </body>
 </html>
+
