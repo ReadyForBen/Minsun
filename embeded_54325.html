@@ -1,5 +1,4 @@
 <!-- 🪷 This project was developed by Ben (@InactiveBen) on Twitter and Discord. -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +36,6 @@
             background-color: #2E3238;
             font-family: 'Poppins', Arial, sans-serif;
             color: white;
-            overflow: hidden;
-            position: relative;
         }
         .loading {
             display: flex;
@@ -53,18 +50,13 @@
             border: 8px solid #3A3F47;
             border-top: 8px solid #fa4463;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 45px;
+            height: 45px;
             animation: spin 1s linear infinite;
-            margin-bottom: 20px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-        .loading-text {
-            font-size: 1.5em;
-            color: #ddd;
         }
         .content {
             display: none;
@@ -135,22 +127,6 @@
         .fade-out {
             animation: fadeOut 0.5s forwards;
         }
-        .page-shimmer {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 300%;
-            background: rgba(255, 255, 255, 0.15);
-            transition: all 0.8s ease;
-            transform: translate(-50%, -50%) rotate(45deg);
-            opacity: 0;
-            z-index: 1000;
-        }
-        .page-shimmer.active {
-            width: 300%;
-            opacity: 1;
-        }
         @keyframes fadeOut {
             to {
                 opacity: 0;
@@ -162,10 +138,10 @@
 <body>
     <div class="loading">
         <div class="loading-circle"></div>
-        <div class="loading-text" id="loading-text">Loading.</div>
     </div>
-
+    
     <div class="content">
+        <h1>Minsun</h1>
         <img src="https://i.imgur.com/BptG9Km.png" alt="Thumbnail Image">
         <p>Thank you for visiting <span class="highlight">Minsun</span>! We're working hard on something amazing. Our server is getting a major upgrade, and we can't wait to show you what's next.</p>
         <p>Stay tuned for updates—you're going to love what's coming next!</p>
@@ -175,36 +151,26 @@
         </div>
     </div>
 
-    <div class="page-shimmer" id="page-shimmer"></div>
-
     <script>
-        let dots = 0;
-        const loadingText = document.getElementById('loading-text');
-
-        const loadingInterval = setInterval(function() {
-            dots = (dots + 1) % 4;
-            let dotStr = 'Loading' + '.'.repeat(dots);
-            loadingText.textContent = dotStr;
-        }, 500);
+        const loadingCircle = document.querySelector('.loading-circle');
 
         setTimeout(function() {
-            clearInterval(loadingInterval);
-            loadingText.textContent = 'Welcome to Minsun!';
+            loadingCircle.textContent = '';
             setTimeout(function() {
                 document.querySelector('.loading').style.display = 'none';
                 document.querySelector('.content').style.display = 'block';
+                document.title = 'Minsun';
             }, 1500);
-        }, 4500);
+        }, 900);
 
         function handleButtonClick(event) {
             event.preventDefault();
-            const shimmer = document.getElementById('page-shimmer');
-            shimmer.classList.add('active');
+            const button = event.currentTarget;
+            button.classList.add('fade-out');
             setTimeout(function() {
-                window.location.href = event.currentTarget.href;
-            }, 800); // Delay adjusted to match the shimmer duration
+                window.location.href = button.href;
+            }, 500);
         }
     </script>
 </body>
 </html>
-
