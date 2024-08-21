@@ -1,5 +1,6 @@
 <!-- 🪷 This project was developed by Ben (@InactiveBen) on Twitter and Discord. -->
 <!-- It is open-source on GitHub, and you're welcome to explore, use, or contribute to it: https://github.com/ReadyForBen/Minsun/tree/main -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,6 +106,7 @@
             position: relative;
             overflow: hidden;
             transition: background-color 0.4s;
+            cursor: pointer;
         }
         .button::before {
             content: '';
@@ -149,8 +151,8 @@
         <p>Thank you for visiting <span class="highlight">Minsun</span>! We're working hard on something amazing. Our server is getting a major upgrade, and we can't wait to show you what's next.</p>
         <p>Stay tuned for updates—you're going to love what's coming next!</p>
         <div class="buttons">
-            <a href="https://www.roblox.com/groups/34590522/Minsun#!/about" class="button" target="_blank" onclick="handleButtonClick(event)">Join us on Roblox</a>
-            <a href="https://discord.gg/vS5B5hpc97" class="button" target="_blank" onclick="handleButtonClick(event)">Join our Discord</a>
+            <div class="button" onclick="handleButtonClick('https://www.roblox.com/groups/34590522/Minsun#!/about')">Join us on Roblox</div>
+            <div class="button" onclick="handleButtonClick('https://discord.gg/vS5B5hpc97')">Join our Discord</div>
         </div>
     </div>
     
@@ -162,12 +164,11 @@
             document.querySelector('.content').style.display = 'block';
         }, 900);
 
-        function handleButtonClick(event) {
-            event.preventDefault();
+        function handleButtonClick(url) {
             const pageFadeOut = document.getElementById('page-fade-out');
             pageFadeOut.classList.add('fade-in');
             setTimeout(function() {
-                window.location.href = event.currentTarget.href;
+                window.location.href = url;
             }, 800);
         }
     </script>
