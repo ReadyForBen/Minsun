@@ -1,0 +1,79 @@
+<!-- 🪷 This project was developed by Ben (@InactiveBen) on Twitter and Discord. -->
+<!-- It is open-source on GitHub, and you're welcome to explore, use, or contribute to it: https://github.com/ReadyForBen/Minsun/tree/main -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minsun - No Longer Accepting Applicants</title>
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Minsun - No Longer Accepting Applicants">
+    <meta property="og:description" content="The application deadline for this job has now passed.">
+    <meta property="og:image" content="https://i.imgur.com/oWWuNum.png">
+    <meta property="og:url" content="https://minsun.co">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Minsun - No Longer Accepting Applicants">
+    <meta name="twitter:description" content="The application deadline for this job has now passed.">
+    <meta name="twitter:image" content="https://i.imgur.com/oWWuNum.png">
+    <meta name="twitter:url" content="https://minsun.co">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/IZeOnsW.png">
+
+    <!-- Font and Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2E3238;
+            font-family: 'Poppins', Arial, sans-serif;
+            color: white;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background: #3A3F47;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+        .content img {
+            width: 200px;
+            height: auto;
+            margin-bottom: -56px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #fa4463;
+            margin-bottom: -21px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #ddd;
+            margin-bottom: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <img src="https://i.imgur.com/BptG9Km.png" alt="Thumbnail Image">
+        <h1>Oops,</h1>
+        <p>The application deadline for this job has now passed.</p>
+    </div>
+</body>
+</html>
