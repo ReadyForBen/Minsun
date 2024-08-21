@@ -1,5 +1,6 @@
 <!-- 🪷 This project was developed by Ben (@InactiveBen) on Twitter and Discord. -->
 <!-- It is open-source on GitHub, and you're welcome to explore, use, or contribute to it: https://github.com/ReadyForBen/Minsun/tree/main -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +38,6 @@
             background-color: #2E3238;
             font-family: 'Poppins', Arial, sans-serif;
             color: white;
-            overflow: hidden;
-            position: relative;
         }
         .loading {
             display: flex;
@@ -55,12 +54,16 @@
             border-radius: 50%;
             width: 60px;
             height: 60px;
-            animation: spin 0.9s linear infinite;
+            animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            font-size: 1.5em;
+            color: #ddd;
         }
         .content {
             display: none;
@@ -104,45 +107,45 @@
             font-weight: 600;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
-            transition: background-color 0.4s ease-in-out;
+            transition: color 0.4s, background-color 0.4s;
         }
         .button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -150%;
-            width: 150%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: skewX(-20deg);
-            transition: left 0.5s ease-in-out;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%) rotate(45deg);
+            opacity: 0;
         }
         .button:hover::before {
-            left: 100%;
+            width: 300%;
+            opacity: 1;
         }
         .button:hover {
             background-color: #e03b57;
         }
-        .page-fade-out {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #2E3238;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-            z-index: 10;
+        .button:active {
+            transform: scale(0.95);
         }
-        .fade-in {
-            opacity: 1;
+        .fade-out {
+            animation: fadeOut 0.5s forwards;
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: scale(1.1);
+            }
         }
     </style>
 </head>
 <body>
     <div class="loading">
         <div class="loading-circle"></div>
+        <div class="loading-text" id="loading-text">Loading.</div>
     </div>
     
     <div class="content">
@@ -150,27 +153,38 @@
         <p>Thank you for visiting <span class="highlight">Minsun</span>! We're working hard on something amazing. Our server is getting a major upgrade, and we can't wait to show you what's next.</p>
         <p>Stay tuned for updates—you're going to love what's coming next!</p>
         <div class="buttons">
-            <div class="button" onclick="handleButtonClick('https://www.roblox.com/groups/34590522/Minsun#!/about')">Join us on Roblox</div>
-            <div class="button" onclick="handleButtonClick('https://discord.gg/vS5B5hpc97')">Join our Discord</div>
+            <a href="https://www.roblox.com/groups/34590522/Minsun#!/about" class="button" target="_blank" onclick="handleButtonClick(event)">Join us on Roblox</a>
+            <a href="https://discord.gg/vS5B5hpc97" class="button" target="_blank" onclick="handleButtonClick(event)">Join our Discord</a>
         </div>
     </div>
-    
-    <div class="page-fade-out" id="page-fade-out"></div>
 
     <script>
-        setTimeout(function() {
-            document.querySelector('.loading').style.display = 'none';
-            document.querySelector('.content').style.display = 'block';
-        }, 900);
+        let dots = 0;
+        const loadingText = document.getElementById('loading-text');
 
-        function handleButtonClick(url) {
-            const pageFadeOut = document.getElementById('page-fade-out');
-            pageFadeOut.classList.add('fade-in');
+        const loadingInterval = setInterval(function() {
+            dots = (dots + 1) % 4;
+            let dotStr = 'Loading' + '.'.repeat(dots);
+            loadingText.textContent = dotStr;
+        }, 500);
+
+        setTimeout(function() {
+            clearInterval(loadingInterval);
+            loadingText.textContent = 'Welcome to Minsun!';
             setTimeout(function() {
-                window.location.href = url;
-            }, 800);
+                document.querySelector('.loading').style.display = 'none';
+                document.querySelector('.content').style.display = 'block';
+            }, 1500);
+        }, 4500);
+
+        function handleButtonClick(event) {
+            event.preventDefault();
+            const button = event.currentTarget;
+            button.classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = button.href;
+            }, 500);
         }
     </script>
 </body>
 </html>
-
