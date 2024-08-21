@@ -1,5 +1,4 @@
 <!-- 🪷 This project was developed by Ben (@InactiveBen) on Twitter and Discord. -->
-<!-- It is open-source on GitHub, and you're welcome to explore, use, or contribute to it: https://github.com/ReadyForBen/Minsun/tree/main -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +37,8 @@
             background-color: #2E3238;
             font-family: 'Poppins', Arial, sans-serif;
             color: white;
+            overflow: hidden;
+            position: relative;
         }
         .loading {
             display: flex;
@@ -134,6 +135,22 @@
         .fade-out {
             animation: fadeOut 0.5s forwards;
         }
+        .page-shimmer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.15);
+            transition: all 0.8s ease;
+            transform: translate(-50%, -50%) rotate(45deg);
+            opacity: 0;
+            z-index: 1000;
+        }
+        .page-shimmer.active {
+            width: 300%;
+            opacity: 1;
+        }
         @keyframes fadeOut {
             to {
                 opacity: 0;
@@ -147,7 +164,7 @@
         <div class="loading-circle"></div>
         <div class="loading-text" id="loading-text">Loading.</div>
     </div>
-    
+
     <div class="content">
         <img src="https://i.imgur.com/BptG9Km.png" alt="Thumbnail Image">
         <p>Thank you for visiting <span class="highlight">Minsun</span>! We're working hard on something amazing. Our server is getting a major upgrade, and we can't wait to show you what's next.</p>
@@ -157,6 +174,8 @@
             <a href="https://discord.gg/vS5B5hpc97" class="button" target="_blank" onclick="handleButtonClick(event)">Join our Discord</a>
         </div>
     </div>
+
+    <div class="page-shimmer" id="page-shimmer"></div>
 
     <script>
         let dots = 0;
@@ -179,12 +198,13 @@
 
         function handleButtonClick(event) {
             event.preventDefault();
-            const button = event.currentTarget;
-            button.classList.add('fade-out');
+            const shimmer = document.getElementById('page-shimmer');
+            shimmer.classList.add('active');
             setTimeout(function() {
-                window.location.href = button.href;
-            }, 500);
+                window.location.href = event.currentTarget.href;
+            }, 800); // Delay adjusted to match the shimmer duration
         }
     </script>
 </body>
 </html>
+
